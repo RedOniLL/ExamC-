@@ -8,12 +8,19 @@
             string filename = "inventory.txt";
             manager.LoadInventory(filename);
 
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Welcome to Inventory Management System");
             Console.WriteLine("--------------------------------------");
 
+
             while (true)
             {
+                
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\nSelect an option:");
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("1. Add Item");
                 Console.WriteLine("2. Display Inventory");
                 Console.WriteLine("3. Search Item by Name");
@@ -21,9 +28,12 @@
                 Console.WriteLine("5. Search Item by Price");
                 Console.WriteLine("6. Search Item by Type");
                 Console.WriteLine("7. Remove Item");
+                Console.WriteLine("8. Change file directory");
                 Console.WriteLine("0. Exit");
 
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Enter your choice: ");
+               
                 int choice;
                 if (!int.TryParse(Console.ReadLine(), out choice))
                 {
@@ -37,34 +47,55 @@
                         AddItem(manager);
                         break;
                     case 2:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         manager.DisplayInventory();
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 3:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         SearchItemByName(manager);
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 4:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         SearchItemByCategory(manager);
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 5:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         SearchItemByPrice(manager);
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 6:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         SearchItemByType(manager);
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case 7:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         RemoveItem(manager);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case 8:
+                        MoveFile(manager);
                         break;
                     case 0:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         manager.SaveInventory(filename);
                         Console.WriteLine("Inventory saved to file. Exiting...");
+                        Console.ForegroundColor = ConsoleColor.White;
                         return;
                     default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("Invalid choice. Please select a valid option.");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
+                
             }
         }
 
+        
         static void AddItem(InventoryManager manager)
         {
             Console.WriteLine("\nAdding Item");
@@ -140,6 +171,11 @@
             {
                 Console.WriteLine($"Item '{name}' not found.");
             }
+        }
+
+        static void MoveFile(InventoryManager manager)
+        {
+            manager.MoveFile();
         }
     }
     

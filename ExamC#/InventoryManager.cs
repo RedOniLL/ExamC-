@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamC_
 {
-    class InventoryManager
+    public class InventoryManager
     {
         private List<Item> inventory = new List<Item>();
         public void AddItem(Item newItem)
@@ -25,12 +25,12 @@ namespace ExamC_
             }
         }
 
-       
+
         public void LoadInventory(string filename)
         {
             if (File.Exists(filename))
             {
-                inventory.Clear(); 
+                inventory.Clear();
                 using (StreamReader reader = new StreamReader(filename))
                 {
                     string line;
@@ -68,7 +68,7 @@ namespace ExamC_
             }
         }
 
-      
+
         public void SearchItemByName(string name)
         {
             var foundItems = inventory.FindAll(item => item.Name.ToLower().Contains(name.ToLower()));
@@ -98,7 +98,7 @@ namespace ExamC_
             PrintSearchResults(foundItems, $"Price > ${minPrice}");
         }
 
-        
+
         public void SearchItemByType(string type)
         {
             var foundItems = inventory.FindAll(item => item.Type.ToLower() == type.ToLower());
@@ -130,6 +130,30 @@ namespace ExamC_
                 return true;
             }
             return false;
+        }
+
+        public void MoveFile()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Enter the path of the file to move: ");
+            string sourcePath = Console.ReadLine();
+
+            
+            string destinationPath = @"C:\Users\User\source\repos\ExamC#\ExamC#\bin\Debug\net7.0\inventory.txt";
+
+            try
+            {
+                File.Move(sourcePath, destinationPath);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("File moved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+
+            Console.ResetColor();
         }
     }
 }
