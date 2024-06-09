@@ -91,7 +91,11 @@
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
-                
+
+                Console.WriteLine("continue? - press any key");
+                Console.ReadLine();
+                Console.Clear();
+
             }
         }
 
