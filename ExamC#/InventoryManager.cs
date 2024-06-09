@@ -8,6 +8,8 @@ namespace ExamC_
 {
     public class InventoryManager
     {
+        private string Path {  get; set; }
+
         private List<Item> inventory = new List<Item>();
         public void AddItem(Item newItem)
         {
@@ -146,6 +148,7 @@ namespace ExamC_
                 File.Move(sourcePath, destinationPath);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("File moved successfully.");
+                Path = sourcePath;
             }
             catch (Exception ex)
             {
