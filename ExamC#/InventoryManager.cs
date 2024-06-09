@@ -8,7 +8,7 @@ namespace ExamC_
 {
     public class InventoryManager
     {
-        private string Path {  get; set; }
+        private string Path = @"C:\Users\User\source\repos\ExamC#\ExamC#\bin\Debug\net7.0\inventory.txt";
 
         private List<Item> inventory = new List<Item>();
         public void AddItem(Item newItem)
@@ -141,7 +141,7 @@ namespace ExamC_
             string sourcePath = Console.ReadLine();
 
             
-            string destinationPath = @"C:\Users\User\source\repos\ExamC#\ExamC#\bin\Debug\net7.0\inventory.txt";
+            string destinationPath = Path;
 
             try
             {
